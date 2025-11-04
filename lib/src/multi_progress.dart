@@ -3,7 +3,10 @@ import 'package:interact/src/progress.dart';
 
 /// A shared context and handler for rendering multiple [Progress] bars.
 class MultiProgress {
-  final Context _context = Context();
+  /// Creates a [MultiProgress] with an optional custom [Context].
+  MultiProgress({Context? context}) : _context = context ?? Context();
+
+  final Context _context;
   final List<StringBuffer> _lines = [];
   final List<ProgressState> _bars = [];
   final List<void Function()> _disposers = [];

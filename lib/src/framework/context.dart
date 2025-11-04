@@ -1,4 +1,4 @@
-part of interact.framework;
+part of 'framework.dart';
 
 final _defaultConsole = Console();
 

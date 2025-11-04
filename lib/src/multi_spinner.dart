@@ -3,7 +3,10 @@ import 'package:interact/src/spinner.dart';
 
 /// A shared context and handler for rendering multiple [Spinner]s.
 class MultiSpinner {
-  final Context _context = Context();
+  /// Creates a [MultiSpinner] with an optional custom [Context].
+  MultiSpinner({Context? context}) : _context = context ?? Context();
+
+  final Context _context;
   final List<StringBuffer> _lines = [];
   final List<SpinnerState> _spinners = [];
   final List<void Function()> _disposers = [];

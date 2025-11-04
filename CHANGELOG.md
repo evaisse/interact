@@ -1,3 +1,10 @@
+## 3.0.0
+
+- Document usage for every interactive component in `docs/components.md` and link it from the README.
+- Allow `MultiSpinner` and `MultiProgress` to share custom rendering contexts for improved embedding/testability.
+- Add comprehensive unit tests for all components with a fake console harness.
+- Add `fake_async` as a dev dependency to support timer-driven tests.
+
 ## 2.2.0
 
 - Update sdk and dependencies to the most recent ones

@@ -15,6 +15,7 @@ A collection of customizable interactive command-line components.
     - [Password Component](#password-component)
     - [Select Component](#select-component)
     - [MultiSelect Component](#multiselect-component)
+    - [FuzzyMultiSelect Component](#fuzzymultiselect-component)
     - [Sort Component](#sort-component)
     - [Spinner and MultiSpinner Components](#spinner-and-multispinner-components)
     - [Progress and MultiProgress Components](#progress-and-multiprogress-components)
@@ -27,7 +28,7 @@ A collection of customizable interactive command-line components.
 
 ## Overview
 
-The library contains a bunch of command-line components that are easy to use and customizable, including text and password inputs, radio or select inputs, checkbox or multiple select inputs, spinners, and progress bars. Examples for all the available components can be found in the `example` folder, and the [API Documentation](#api-documentation) section will cover all about them.
+The library contains a bunch of command-line components that are easy to use and customizable, including text and password inputs, radio or select inputs, checkbox or multiple select inputs, spinners, and progress bars. Examples for all the available components can be found in the `example` folder, and the [API Documentation](#api-documentation) section will cover all about them. Run `dart example/kitchen_sink.dart` for an interactive showcase that links every demo in one place.
 
 As an overview, you can make a `Select` component like this.
 
@@ -57,7 +58,7 @@ Install the latest version of interact as a dependency as shown in [pub.dev](htt
 
 ### Components
 
-These are the snippets of components with their properties and arguments. Check the [pub documentation](https://pub.dev/documentation/interact/latest/) to get to know more about them in detail.
+These are the snippets of components with their properties and arguments. Check the [pub documentation](https://pub.dev/documentation/interact/latest/) to get to know more about them in detail. A companion walkthrough of each component lives in [`docs/components.md`](docs/components.md).
 
 <br>
 
@@ -142,6 +143,39 @@ final answers = MultiSelect(
   defaults: [false, true, false], // optional, will be all false by default
 ).interact();
 ```
+
+<br>
+
+#### FuzzyMultiSelect Component
+
+The fuzzy multi-select builds on top of the default multi-select with instant filtering and paging for large datasets.
+
+```dart
+final frameworks = [
+  'Angular',
+  'Deno',
+  'Django',
+  'FastAPI',
+  'Flutter',
+  'Next.js',
+  'Nuxt',
+  'React',
+  'Remix',
+  'Solid',
+  'Svelte',
+  'Vue',
+];
+
+final selected = FuzzyMultiSelect(
+  prompt: 'Select the frameworks you target',
+  options: frameworks,
+  pageSize: 6, // optional, controls the number of visible rows
+).interact();
+
+final picked = selected.map((index) => frameworks[index]).toList();
+```
+
+Typing anywhere focuses the search input; use the arrow keys to move, <kbd>SpaceBar</kbd> to toggle, and <kbd>Enter</kbd> to finish.
 
 <br>
 

@@ -1,5 +1,5 @@
 import 'dart:convert' show JsonEncoder;
-import 'dart:io' show stdout, stderr, exit;
+import 'dart:io' show exit, stderr, stdout;
 
 import 'package:interact/interact.dart';
 
