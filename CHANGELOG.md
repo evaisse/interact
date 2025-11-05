@@ -1,6 +1,11 @@
 ## 3.0.0
 
 - Document usage for every interactive component in `docs/components.md` and link it from the README.
+- Add CONTRIBUTING guide aligned with repository conventions.
+- Expand kitchen sink demo with emoji-rich labels and styled component names.
+- Update component doc comments to include runnable examples.
+- Highlight fuzzy matches with bold styling instead of parentheses.
+- Use circular bullets for select-style components to emphasize expected choice.
 - Allow `MultiSpinner` and `MultiProgress` to share custom rendering contexts for improved embedding/testability.
 - Add comprehensive unit tests for all components with a fake console harness.
 - Add `fake_async` as a dev dependency to support timer-driven tests.
