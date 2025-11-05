@@ -1,0 +1,3 @@
+EntryPoint: lib/interact.dart
+Goal: Provide customizable interactive CLI components (prompts, spinners, progress bars) for Dart applications.
+AgentInstructions: See AGENTS.md for contributor expectations and agent-specific guidance.
