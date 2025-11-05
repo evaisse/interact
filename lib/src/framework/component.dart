@@ -9,7 +9,7 @@ part of 'framework.dart';
 ///
 /// Generic [T] is the return type of the [Component] which
 /// will be returned from the `interact()` function.
-abstract class Component<T extends dynamic> {
+abstract class Component<T extends Object?> {
   /// Creates a [State] for current component,
   /// inspired by Flutter's [StatefulWidget].
   State createState();

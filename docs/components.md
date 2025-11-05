@@ -224,12 +224,16 @@ component:
 
 ```dart
 final fruits = ['Apple', 'Banana', 'Cherry'];
-final result = Choice(
+final rawResult = Choice(
   prompt: 'Pick fruit',
   options: fruits,
   mode: ChoiceMode.multiple,
   useFuzzySearch: true,
-).interact() as List<int>;
+).interact();
 
-print('Selected: ${result.map((i) => fruits[i]).join(', ')}');
+if (rawResult is! List<int>) {
+  throw StateError('Expected a list of indices from Choice in multiple mode.');
+}
+
+print('Selected: ${rawResult.map((i) => fruits[i]).join(', ')}');
 ```

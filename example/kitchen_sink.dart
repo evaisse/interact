@@ -296,22 +296,32 @@ Future<void> _runSortDemo() {
 Future<void> _runChoiceDemo() {
   final fruits = ['Apple', 'Banana', 'Cherry', 'Dragonfruit'];
 
-  final single = Choice(
+  final singleResult = Choice(
     prompt: 'Select a favourite fruit',
     options: fruits,
     useFuzzySearch: true,
-  ).interact() as int;
+  ).interact();
+
+  if (singleResult is! int) {
+    throw StateError('Expected a single index from Choice in single mode.');
+  }
+  final single = singleResult;
 
   stdout.writeln('Favourite fruit: ${fruits[single]}');
 
   final toppings = ['Cheese', 'Mushroom', 'Pepperoni', 'Spinach'];
-  final multi = Choice(
+  final multiResult = Choice(
     prompt: 'Pizza toppings',
     options: toppings,
     mode: ChoiceMode.multiple,
     defaults: const [true, false, true, false],
-  ).interact() as List<int>
-    ..sort();
+  ).interact();
+
+  if (multiResult is! List<int>) {
+    throw StateError(
+        'Expected a list of indices from Choice in multiple mode.');
+  }
+  final multi = List<int>.from(multiResult)..sort();
 
   final picked = multi.map((i) => toppings[i]).join(', ');
   stdout.writeln('Toppings chosen: $picked');

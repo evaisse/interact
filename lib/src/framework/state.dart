@@ -64,5 +64,5 @@ abstract class State<T extends Component> {
 
   /// Starts the rendering process. Will be handled by
   /// the [Component]'s `interact` function.
-  dynamic interact();
+  Object? interact();
 }

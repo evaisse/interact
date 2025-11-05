@@ -302,12 +302,17 @@ multiple selection, with or without fuzzy search.
 ```dart
 final snacks = ['Pretzel', 'Chips', 'Popcorn', 'Trail mix'];
 
-final selected = Choice(
+final result = Choice(
   prompt: 'Snacks for the road',
   options: snacks,
   mode: ChoiceMode.multiple,
   useFuzzySearch: true,
-).interact() as List<int>;
+).interact();
+
+if (result is! List<int>) {
+  throw StateError('Expected a list of indices from Choice in multiple mode.');
+}
+final selected = result;
 
 print('Packed: ${selected.map((i) => snacks[i]).join(', ')}');
 ```

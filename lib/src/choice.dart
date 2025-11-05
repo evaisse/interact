@@ -24,11 +24,13 @@ enum ChoiceMode {
 ///   options: languages,
 ///   mode: ChoiceMode.single,
 ///   useFuzzySearch: true,
-/// ).interact() as int;
-///
+/// ).interact();
+/// if (choice is! int) {
+///   throw StateError('Expected an index for Choice in single mode.');
+/// }
 /// print('Building with ${languages[choice]}');
 /// ```
-class Choice extends Component<dynamic> {
+class Choice extends Component<Object?> {
   Choice({
     required this.prompt,
     required this.options,
@@ -75,12 +77,12 @@ class Choice extends Component<dynamic> {
   final int pageSize;
   final String searchPlaceholder;
   final Theme theme;
-  final Component<dynamic> _component;
+  final Component<Object?> _component;
 
   /// Exposes the underlying component used to render the choice.
-  Component<dynamic> get delegate => _component;
+  Component<Object?> get delegate => _component;
 
-  static Component<dynamic> _resolve({
+  static Component<Object?> _resolve({
     required String prompt,
     required List<String> options,
     required ChoiceMode mode,
@@ -139,5 +141,5 @@ class Choice extends Component<dynamic> {
   State pipeState(State state) => _component.pipeState(state);
 
   @override
-  dynamic interact() => _component.interact();
+  Object? interact() => _component.interact();
 }

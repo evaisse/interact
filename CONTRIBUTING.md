@@ -27,6 +27,7 @@ integrate smoothly with the existing codebase.
 - Dart style with two-space indentation and trailing commas on multiline
   literals.
 - Prefer `final` for values that are not reassigned.
+- Avoid `dynamic`; use `Object?` instead and add explicit checks when downcasting.
 - Annotate public APIs with doc comments and code samples.
 - Every component must have:
   - A dedicated example under `example/<component>.dart`

@@ -70,7 +70,7 @@ void main() {
 
   stdout.writeln('About to write this to package.json:');
 
-  final content = <String, dynamic>{
+  final content = <String, Object?>{
     'name': name,
     'version': version,
     'description': description,
