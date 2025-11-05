@@ -2,7 +2,16 @@ import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/theme/theme.dart';
 import 'package:interact/src/utils/prompt.dart';
 
-/// A password input component.
+/// Captures hidden input, optionally double-checking a confirmation value.
+///
+/// ```dart
+/// final secret = Password(
+///   prompt: 'Enter the vault code 🔐',
+///   confirmation: true,
+///   confirmPrompt: 'Repeat the vault code',
+///   confirmError: 'Codes do not match',
+/// ).interact();
+/// ```
 class Password extends Component<String> {
   /// Constructs a [Password] component with the default theme.
   Password({

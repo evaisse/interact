@@ -3,7 +3,18 @@ import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/theme/theme.dart';
 import 'package:interact/src/utils/prompt.dart';
 
-/// A selector component.
+/// Presents a single-choice list and returns the selected index.
+///
+/// ```dart
+/// final stacks = ['Dart', 'Rust', 'Go', 'JavaScript'];
+/// final choice = Select(
+///   prompt: 'Pick a stack for your next CLI ⚙️',
+///   options: stacks,
+///   initialIndex: 0,
+/// ).interact();
+///
+/// print('Building with ${stacks[choice]}');
+/// ```
 class Select extends Component<int> {
   /// Constructs a [Select] component with the default theme.
   Select({

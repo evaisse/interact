@@ -3,7 +3,18 @@ import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/theme/theme.dart';
 import 'package:interact/src/utils/prompt.dart';
 
-/// A multiple select or checkbox input component.
+/// Allows users to toggle multiple items and returns the checked indices.
+///
+/// ```dart
+/// final toppings = ['🍕 Cheese', '🌶️ Jalapeño', '🍄 Mushroom'];
+/// final selected = MultiSelect(
+///   prompt: 'Choose toppings',
+///   options: toppings,
+///   defaults: const [true, false, true],
+/// ).interact();
+///
+/// final picked = selected.map((i) => toppings[i]).join(', ');
+/// ```
 class MultiSelect extends Component<List<int>> {
   /// Constructs a [MultiSelect] component with the default theme.
   MultiSelect({

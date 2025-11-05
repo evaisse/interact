@@ -7,7 +7,18 @@ import 'package:interact/src/utils/utils.dart';
 
 String _prompt(bool x) => '';
 
-/// A spinner or a loading indicator component.
+/// Displays an animated spinner until the returned [SpinnerState.done] is run.
+///
+/// ```dart
+/// final task = Spinner(
+///   icon: '✅',
+///   leftPrompt: (_) => 'Building package ',
+///   rightPrompt: (done) => done ? 'complete' : 'in progress…',
+/// ).interact();
+///
+/// await buildArtifacts();
+/// task.done();
+/// ```
 class Spinner extends Component<SpinnerState> {
   /// Construts a [Spinner] component with the default theme.
   Spinner({

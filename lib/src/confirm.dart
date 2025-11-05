@@ -3,7 +3,19 @@ import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/theme/theme.dart';
 import 'package:interact/src/utils/prompt.dart';
 
-/// A confirm component.
+/// Prompts the user for a yes/no confirmation and returns `true` for yes.
+///
+/// ```dart
+/// final deploy = Confirm(
+///   prompt: 'Deploy to production? 🚀',
+///   defaultValue: true,
+///   waitForNewLine: true,
+/// ).interact();
+///
+/// if (deploy) {
+///   runPipeline();
+/// }
+/// ```
 class Confirm extends Component<bool> {
   /// Constructs a [Confirm] component with the default theme.
   Confirm({

@@ -8,7 +8,21 @@ import 'package:tint/tint.dart';
 
 String _prompt(int x) => '';
 
-/// A progress bar component.
+/// Renders a progress bar and returns a controller for updating it.
+///
+/// ```dart
+/// final download = Progress(
+///   length: 100,
+///   leftPrompt: (current) => 'Downloading ',
+///   rightPrompt: (current) => ' ${(current).toString().padLeft(3)}%',
+/// ).interact();
+///
+/// for (var i = 0; i < 100; i++) {
+///   await Future<void>.delayed(const Duration(milliseconds: 30));
+///   download.increase(1);
+/// }
+/// download.done();
+/// ```
 class Progress extends Component<ProgressState> {
   /// Constructs a [Progress] component with the default theme.
   Progress({

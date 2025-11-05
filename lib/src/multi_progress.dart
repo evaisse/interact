@@ -1,7 +1,18 @@
 import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/progress.dart';
 
-/// A shared context and handler for rendering multiple [Progress] bars.
+/// Manages many [Progress] bars simultaneously using a shared rendering context.
+///
+/// ```dart
+/// final dashboard = MultiProgress();
+/// final lint = dashboard.add(Progress(length: 50));
+/// final tests = dashboard.add(Progress(length: 50));
+///
+/// lint.increase(10);
+/// tests.increase(5);
+/// lint.done();
+/// tests.done();
+/// ```
 class MultiProgress {
   /// Creates a [MultiProgress] with an optional custom [Context].
   MultiProgress({Context? context}) : _context = context ?? Context();

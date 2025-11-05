@@ -3,7 +3,17 @@ import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/theme/theme.dart';
 import 'package:interact/src/utils/prompt.dart';
 
-/// A sortable list component.
+/// Enables dragging items up or down to produce a reordered list.
+///
+/// ```dart
+/// final backlog = ['🚀 Launch', '📝 Docs', '🧪 Tests'];
+/// final ordered = Sort(
+///   prompt: 'Reorder the backlog (top = highest priority)',
+///   options: backlog,
+/// ).interact();
+///
+/// print('Next up: ${ordered.first}');
+/// ```
 class Sort extends Component<List<String>> {
   /// Constructs a [Sort] component with the default theme.
   Sort({

@@ -12,7 +12,19 @@ class ValidationError {
   final String message;
 }
 
-/// An input component.
+/// Collects free-form text from the user and optionally validates it.
+///
+/// ```dart
+/// final username = Input(
+///   prompt: 'CLI username 🧑‍💻',
+///   validator: (value) {
+///     if (value.trim().isEmpty) {
+///       throw ValidationError('Please enter a name');
+///     }
+///     return true;
+///   },
+/// ).interact();
+/// ```
 class Input extends Component<String> {
   /// Constructs an [Input] component with the default theme.
   Input({

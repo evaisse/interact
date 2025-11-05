@@ -1,7 +1,19 @@
 import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/spinner.dart';
 
-/// A shared context and handler for rendering multiple [Spinner]s.
+/// Coordinates multiple [Spinner] instances without them overwriting each
+/// other on the terminal.
+///
+/// ```dart
+/// final deck = MultiSpinner();
+/// final lint = deck.add(Spinner(icon: '🧹'));
+/// final build = deck.add(Spinner(icon: '🏗️'));
+///
+/// await runLint();
+/// lint.done();
+/// await runBuild();
+/// build.done();
+/// ```
 class MultiSpinner {
   /// Creates a [MultiSpinner] with an optional custom [Context].
   MultiSpinner({Context? context}) : _context = context ?? Context();
