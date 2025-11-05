@@ -5,6 +5,7 @@ import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/theme/theme.dart';
 import 'package:interact/src/utils/fuzzy.dart';
 import 'package:interact/src/utils/prompt.dart';
+import 'package:tint/tint.dart';
 
 /// Like [MultiSelect], but adds fuzzy search, paging, and keyboard shortcuts.
 ///
@@ -413,11 +414,10 @@ class _FuzzyMultiSelectState extends State<FuzzyMultiSelect> {
 
     for (var i = 0; i < result.label.length; i++) {
       final char = result.label[i];
-      if (highlightSet.contains(i)) {
-        buffer.write(component.theme.hintStyle(char));
-      } else {
-        buffer.write(applyItemStyle(char));
-      }
+      final styled = applyItemStyle(char);
+      buffer.write(
+        highlightSet.contains(i) ? styled.bold() : styled,
+      );
     }
 
     return buffer.isEmpty ? applyItemStyle(result.label) : buffer.toString();

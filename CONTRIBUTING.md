@@ -1,65 +1,82 @@
 # Contributing to Interact
 
-Thanks for helping improve Interact! This document captures the expectations for
-contributors so we can work efficiently together.
+Thanks for helping improve Interact! Please follow these guidelines so changes
+integrate smoothly with the existing codebase.
 
-## Getting Started
+## Repository Expectations
 
-1. **Fork and clone** this repository.
-2. Ensure you have a recent Dart SDK installed (`dart --version`).
-3. Install dependencies with:
+- **Read `AGENTS.md` first.** It summarizes the project layout, naming rules,
+  and how code is organised under `lib/src`.
+- Keep `lib/interact.dart` in sync when you add or remove public exports.
+- Add or refresh usage notes in `docs/components.md` whenever API behaviour
+  changes.
+- Record user-visible changes in `CHANGELOG.md`, bumping the version when
+  appropriate.
+
+## Setup
+
+1. Fork and clone this repository.
+2. Install a recent Dart SDK (`dart --version`).
+3. Fetch packages:
    ```bash
    dart pub get
    ```
 
-## Development Workflow
+## Coding Standards
 
-- Follow the repository structure described in `AGENTS.md`.
-- When touching core components under `lib/src/`, keep the entry point
-  `lib/interact.dart` updated if new exports are added.
-- Keep documentation in sync:
-  - Update `docs/components.md` for user-visible changes.
-  - Update `CHANGELOG.md` under the appropriate version header.
+- Dart style with two-space indentation and trailing commas on multiline
+  literals.
+- Prefer `final` for values that are not reassigned.
+- Annotate public APIs with doc comments and code samples.
+- Every component must have:
+  - A dedicated example under `example/<component>.dart`
+  - An entry in `example/kitchen_sink.dart` so it appears in the unified demo
+- Keep interactive demos under `example/` lightweight.
 
-## Style & Linting
+## Quality Checks
 
-- The project enforces `package:lint` via `analysis_options.yaml`.
-- Before committing, run:
-  ```bash
-  dart format .
-  dart analyze
-  dart test
-  ```
-- Ensure CI passes locally, including coverage:
-  ```bash
-  dart test --coverage=coverage
-  ```
-  The workflow enforces a minimum of 80% line coverage. Add or update tests as
-  needed.
+Run these commands before every commit:
 
-## Commit & PR Guidelines
+```bash
+dart format .
+dart analyze
+dart test
+dart test --coverage=coverage
+dart run coverage:format_coverage \
+  --lcov \
+  --in=coverage \
+  --out=coverage/lcov.info \
+  --packages=.dart_tool/package_config.json \
+  --report-on=lib
+dart run tool/coverage_summary.dart --min 80
+```
+
+The CI workflow enforces an 80 % line coverage minimum, formatting, and linting.
+
+## Testing Guidelines
+
+- Place specs under `test/` using `package:test`.
+- Use `test/helpers/fake_context.dart` to simulate terminal input and output
+  without touching the real console.
+- When fixing a bug, add a regression test that proves the fix.
+
+## Commit & PR Process
 
 - Use [Conventional Commits](https://www.conventionalcommits.org/) (e.g.
-  `feat: add fuzzy select demo`).
+  `feat: add fuzzy multi-select demo`).
 - Keep commit subjects under 72 characters.
-- For pull requests, include:
-  - A summary of the change
-  - Links to relevant issues
-  - Validation steps (commands run)
-- Update screenshots or asciicasts when terminal UX changes.
-
-## Tests
-
-- Write unit tests under `test/` using `package:test`.
-- Use the `FakeContext` utilities where possible to keep tests deterministic.
-- When adding regressions, cover them with a focused test.
+- PRs should include:
+  - Summary of the change
+  - Linked issues (if any)
+  - Validation steps (commands you ran)
+  - Screenshots or recordings when terminal UX changes
 
 ## Submitting Changes
 
-1. Run all validation commands.
-2. Commit using the recommended conventions.
-3. Push to your fork and open a pull request.
-4. Mention maintainers if you need review attention.
+1. Ensure all validation commands succeed locally.
+2. Commit with an appropriate Conventional Commit message.
+3. Push to your fork and open a pull request against `main`.
+4. Address review feedback promptly.
 
-We appreciate your contribution! If you have questions, open an issue or start a
-discussion. Happy hacking!
+If anything is unclear, open an issue or start a discussion. Thanks again for
+your contributions!
