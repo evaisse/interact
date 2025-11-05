@@ -112,6 +112,21 @@ final chosen = FuzzyMultiSelect(
 - Navigate with arrows, <kbd>PgUp</kbd>/<kbd>PgDn</kbd>, or jump with
   <kbd>Home</kbd>/<kbd>End</kbd>.
 
+## FuzzySelect
+
+Add fuzzy search to a single-choice selector:
+
+```dart
+final packages = ['args', 'async', 'build_runner', 'test'];
+final index = FuzzySelect(
+  prompt: 'Pick a package 🔍',
+  options: packages,
+  pageSize: 3,
+).interact();
+
+print('Using ${packages[index]}');
+```
+
 ## Sort
 
 Reorder items interactively and return the sorted list:
@@ -202,3 +217,19 @@ second.done();
 
 `MultiProgress` mirrors `MultiSpinner`, sharing a rendering context so several
 bars can update without flickering.
+## Choice
+
+Combine single or multi selection with optional fuzzy search through one
+component:
+
+```dart
+final fruits = ['Apple', 'Banana', 'Cherry'];
+final result = Choice(
+  prompt: 'Pick fruit',
+  options: fruits,
+  mode: ChoiceMode.multiple,
+  useFuzzySearch: true,
+).interact() as List<int>;
+
+print('Selected: ${result.map((i) => fruits[i]).join(', ')}');
+```

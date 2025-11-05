@@ -49,6 +49,12 @@ final List<_DemoEntry> _demos = [
     run: _runMultiSelectDemo,
   ),
   const _DemoEntry(
+    emoji: '🧠',
+    title: 'FuzzySelect',
+    summary: 'Single-choice selector with fuzzy search',
+    run: _runFuzzySelectDemo,
+  ),
+  const _DemoEntry(
     emoji: '🔍',
     title: 'FuzzyMultiSelect',
     summary: 'Large list with fuzzy search and paging',
@@ -83,6 +89,12 @@ final List<_DemoEntry> _demos = [
     title: 'MultiProgress',
     summary: 'Side-by-side progress bars',
     run: _runMultiProgressDemo,
+  ),
+  const _DemoEntry(
+    emoji: '🔀',
+    title: 'Choice',
+    summary: 'Unified single or multi selector with optional fuzzy search',
+    run: _runChoiceDemo,
   ),
 ];
 
@@ -203,6 +215,27 @@ Future<void> _runMultiSelectDemo() {
   return Future<void>.value();
 }
 
+Future<void> _runFuzzySelectDemo() {
+  final commands = [
+    'analyze',
+    'build',
+    'clean',
+    'deploy',
+    'doc',
+    'format',
+    'test',
+  ];
+
+  final index = FuzzySelect(
+    prompt: 'Pick a CLI command',
+    options: commands,
+    pageSize: 4,
+  ).interact();
+
+  stdout.writeln('Executing `${commands[index]}`');
+  return Future<void>.value();
+}
+
 Future<void> _runFuzzyMultiSelectDemo() {
   final packages = [
     'ansi-escapes',
@@ -257,6 +290,32 @@ Future<void> _runSortDemo() {
   ).interact();
 
   stdout.writeln('Updated priority order: ${ordered.join(' → ')}');
+  return Future<void>.value();
+}
+
+Future<void> _runChoiceDemo() {
+  final fruits = ['Apple', 'Banana', 'Cherry', 'Dragonfruit'];
+
+  final single = Choice(
+    prompt: 'Select a favourite fruit',
+    options: fruits,
+    useFuzzySearch: true,
+  ).interact() as int;
+
+  stdout.writeln('Favourite fruit: ${fruits[single]}');
+
+  final toppings = ['Cheese', 'Mushroom', 'Pepperoni', 'Spinach'];
+  final multi = Choice(
+    prompt: 'Pizza toppings',
+    options: toppings,
+    mode: ChoiceMode.multiple,
+    defaults: const [true, false, true, false],
+  ).interact() as List<int>
+    ..sort();
+
+  final picked = multi.map((i) => toppings[i]).join(', ');
+  stdout.writeln('Toppings chosen: $picked');
+
   return Future<void>.value();
 }
 

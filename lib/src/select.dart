@@ -99,9 +99,13 @@ class _SelectState extends State<Select> {
       if (i == index) {
         line.write(component.theme.activeItemPrefix);
         line.write(' ');
+        line.write(component.theme.checkedItemPrefix);
+        line.write(' ');
         line.write(component.theme.activeItemStyle(option));
       } else {
         line.write(component.theme.inactiveItemPrefix);
+        line.write(' ');
+        line.write(component.theme.uncheckedItemPrefix);
         line.write(' ');
         line.write(component.theme.inactiveItemStyle(option));
       }

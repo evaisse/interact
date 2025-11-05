@@ -1,7 +1,9 @@
 import 'package:interact/src/framework/framework.dart' show Context;
 
+export 'src/choice.dart';
 export 'src/confirm.dart';
 export 'src/fuzzy_multi_select.dart';
+export 'src/fuzzy_select.dart';
 export 'src/input.dart';
 export 'src/multi_progress.dart';
 export 'src/multi_select.dart';

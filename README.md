@@ -15,10 +15,12 @@ A collection of customizable interactive command-line components.
     - [Password Component](#password-component)
     - [Select Component](#select-component)
     - [MultiSelect Component](#multiselect-component)
+    - [FuzzySelect Component](#fuzzyselect-component)
     - [FuzzyMultiSelect Component](#fuzzymultiselect-component)
     - [Sort Component](#sort-component)
     - [Spinner and MultiSpinner Components](#spinner-and-multispinner-components)
     - [Progress and MultiProgress Components](#progress-and-multiprogress-components)
+    - [Choice Component](#choice-component)
   - [Customizing Themes](#customizing-themes)
   - [Handling Exceptions](#handling-exceptions)
 - [Acknowledgement](#acknowledgement)
@@ -146,6 +148,27 @@ final answers = MultiSelect(
 
 <br>
 
+#### FuzzySelect Component
+
+Fuzzy select keeps navigation snappy while offering instant filtering for a
+single choice. The index of the picked option is returned.
+
+```dart
+final packages = ['ansi-escapes', 'chalk', 'clipanion', 'interact'];
+
+final selection = FuzzySelect(
+  prompt: 'Choose a package to install',
+  options: packages,
+  pageSize: 3,
+).interact();
+
+print('Installing ${packages[selection]}');
+```
+
+Type to filter, use arrows to highlight, then hit <kbd>Enter</kbd> to confirm.
+
+<br>
+
 #### FuzzyMultiSelect Component
 
 The fuzzy multi-select builds on top of the default multi-select with instant filtering and paging for large datasets.
@@ -268,6 +291,28 @@ for (var i = 0; i < 500; i++) {
 
 p1.done();
 ```
+
+<br>
+
+#### Choice Component
+
+`Choice` offers a single API surface that can switch between single and
+multiple selection, with or without fuzzy search.
+
+```dart
+final snacks = ['Pretzel', 'Chips', 'Popcorn', 'Trail mix'];
+
+final selected = Choice(
+  prompt: 'Snacks for the road',
+  options: snacks,
+  mode: ChoiceMode.multiple,
+  useFuzzySearch: true,
+).interact() as List<int>;
+
+print('Packed: ${selected.map((i) => snacks[i]).join(', ')}');
+```
+
+When `mode` is `ChoiceMode.single`, the component returns a single index.
 
 <br>
 

@@ -4,6 +4,8 @@
 - Add CONTRIBUTING guide aligned with repository conventions.
 - Expand kitchen sink demo with emoji-rich labels and styled component names.
 - Update component doc comments to include runnable examples.
+- Introduce `FuzzySelect` for single-choice fuzzy search and a configurable
+  `Choice` component that toggles between single/multi and fuzzy/plain modes.
 - Highlight fuzzy matches with bold styling instead of parentheses.
 - Use circular bullets for select-style components to emphasize expected choice.
 - Allow `MultiSpinner` and `MultiProgress` to share custom rendering contexts for improved embedding/testability.
