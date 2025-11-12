@@ -343,7 +343,7 @@ and the `Theme.defaultTheme` is the colorful theme by default.
 Because constructing a theme from scrap requires you to write a lot of properties, it might be easier to extend existing themes to create a new one which can be done using the `copyWith` method.
 
 ```dart
-import 'package:tint/tint.dart'; // for extension methods
+import 'package:interact/interact.dart'; // includes styling extensions
 // ...
 Theme customTheme = Theme.colorfulTheme.copyWith(
   activeItemPrefix: '👉'

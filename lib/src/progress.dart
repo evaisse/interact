@@ -3,8 +3,8 @@ import 'dart:io' show ProcessSignal;
 
 import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/theme/theme.dart';
+import 'package:interact/src/utils/ansi_styles.dart';
 import 'package:interact/src/utils/utils.dart';
-import 'package:tint/tint.dart';
 
 String _prompt(int x) => '';
 

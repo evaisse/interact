@@ -14,6 +14,7 @@ export 'src/select.dart';
 export 'src/sort.dart';
 export 'src/spinner.dart';
 export 'src/theme/theme.dart';
+export 'src/utils/ansi_styles.dart';
 
 /// Resets the Terminal to default values.
 void Function() reset = Context.reset;

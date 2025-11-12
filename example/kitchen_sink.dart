@@ -1,7 +1,6 @@
 import 'dart:io' show stdin, stdout;
 
 import 'package:interact/interact.dart';
-import 'package:tint/tint.dart';
 
 class _DemoEntry {
   const _DemoEntry({

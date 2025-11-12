@@ -3,9 +3,9 @@ import 'dart:math' show max, min;
 import 'package:dart_console/dart_console.dart';
 import 'package:interact/src/framework/framework.dart';
 import 'package:interact/src/theme/theme.dart';
+import 'package:interact/src/utils/ansi_styles.dart';
 import 'package:interact/src/utils/fuzzy.dart';
 import 'package:interact/src/utils/prompt.dart';
-import 'package:tint/tint.dart';
 
 /// Presents a single-choice selector with optional fuzzy search.
 ///

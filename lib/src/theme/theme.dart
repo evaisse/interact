@@ -4,7 +4,7 @@
 // it's too much.
 // But I did use expressive names, so it should be good.
 
-import 'package:tint/tint.dart';
+import 'package:interact/src/utils/ansi_styles.dart';
 
 /// [Function] takes a [String] and returns a [String].
 ///
